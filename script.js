@@ -17,7 +17,7 @@ const getComputerChoice = () => {
     } else {
         return 'Scissors'
     }
-    
+
 }
 
 rockButton.addEventListener("click", () => {
@@ -36,23 +36,23 @@ scissorsButton.addEventListener("click", () => {
 
 function playRound(humanChoice, computerChoice) {
 
-    
-        if (humanChoice === 'Rock' && computerChoice === 'Scissors') {
-            humanScore++;
-            console.log(`You win! Your score: ${humanScore}`);
-        } else if (humanChoice === 'Paper' && computerChoice === 'Rock') {
-            humanScore++;
-            console.log(`You win! Your score: ${humanScore}`);
-        } else if (humanChoice === 'Scissors' && computerChoice === 'Paper') {
-            humanScore++;
-            console.log(`You win! Your score: ${humanScore}`);
-        } else if (humanChoice === computerChoice) {
-            console.log(`Draw! Score the same`)
-        } else  {
-            computerScore++;
-            console.log(`You lose! COMP score: ${computerScore}`)
-        }
-       
+
+    if (humanChoice === 'Rock' && computerChoice === 'Scissors') {
+        humanScore++;
+        console.log(`You win! Your score: ${humanScore}`);
+    } else if (humanChoice === 'Paper' && computerChoice === 'Rock') {
+        humanScore++;
+        console.log(`You win! Your score: ${humanScore}`);
+    } else if (humanChoice === 'Scissors' && computerChoice === 'Paper') {
+        humanScore++;
+        console.log(`You win! Your score: ${humanScore}`);
+    } else if (humanChoice === computerChoice) {
+        console.log(`Draw! Score the same`)
+    } else {
+        computerScore++;
+        console.log(`You lose! COMP score: ${computerScore}`)
+    }
+
     const playerScoreDisplay = document.querySelector("#player-score-display")
     playerScoreDisplay.textContent = humanScore;
     const humanChoiceDisplay = document.querySelector("#player-choice");
@@ -64,6 +64,38 @@ function playRound(humanChoice, computerChoice) {
 
         console.log("You win! Restarting score to 0")
         humanScore = 0;
+
+        const gameEndMessage = document.createElement("p");
+        gameEndMessage.textContent = "You win!";
+        gameEndMessage.id = "gameEndMessage";
+        gameEndMessage.style.textAlign = "center";
+        gameContent = document.querySelector("#game-content");
+        gameContent.appendChild(gameEndMessage);
+
+        const newGameButton = document.createElement("button");
+        newGameButton.id = "newGameButton";
+        newGameButton.textContent = "NEW GAME";
+        gameContent.appendChild(newGameButton);
+
+        const gameButtons = document.querySelectorAll('#rock-button, #paper-button, #scissors-button');
+        gameButtons.forEach(button => button.disabled = true);
+
+        newGameButton.addEventListener('click', () => {
+            gameEndMessage.remove();
+            newGameButton.remove();
+            playerScoreDisplay.textContent = humanScore;
+            gameButtons.forEach(button => button.disabled = false);
+        })
+
+        newGameButton.addEventListener('mouseover', () => {
+            newGameButton.style.boxShadow = "0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19)";
+        });
+
+        newGameButton.addEventListener('mouseout', () => {
+            newGameButton.style.boxShadow = "none";
+        });
+
+        
     }
 }
 
