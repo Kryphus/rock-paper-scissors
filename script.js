@@ -99,29 +99,3 @@ function playRound(humanChoice, computerChoice) {
     }
 }
 
-
-
-
-// function playGame() {
-//     console.log(`Let the game begins! Best out of 5, good luck!`)
-
-//     let round = 0;
-//     while(round < 5) {
-//         const humanSelection = getHumanChoice();
-//         const computerSelection = getComputerChoice();
-
-//         playRound(humanSelection, computerSelection);
-//         round++;
-//     }
-
-//     if (humanScore > computerScore) {
-//         console.log(`YOU WIN THE GAME!`)
-//     } else {
-//         console.log(`YOU LOSE! Better luck next time.`)
-//     }
-
-//     humanScore, computerScore = 0;
-// }
-
-// playGame();
-
